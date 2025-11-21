@@ -1,0 +1,8 @@
+node_modules
+dist
+npm-debug.log
+bun.lockb
+*.log
+.git
+.DS_Store
+.env
