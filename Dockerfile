@@ -1,19 +1,17 @@
-FROM oven/bun:1.0
+FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package files and install deps
-COPY package.json bun.lockb* ./
-RUN bun install
+# Install dependencies
+COPY package.json package-lock.json* ./
+RUN npm install
 
-# Copy rest of the app
+# Copy the rest of your code
 COPY . .
 
 # Build the frontend
-RUN bun run build
+RUN npm run build
 
-# Expose port
 EXPOSE 3000
 
-# Start the app
-CMD ["bun", "run", "start"]
+CMD ["npm", "start"]
