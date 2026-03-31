@@ -58,11 +58,19 @@ app.use(express.json({ limit: '50mb' }));
 
 // Health Check Route
 app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+    const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
+    res.status(200).json({ 
+        status: 'ok', 
+        database: dbStatus,
+        port: PORT,
+        timestamp: new Date().toISOString() 
+    });
 });
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../dist')));
+const distPath = path.resolve(__dirname, '../dist');
+app.use(express.static(distPath));
+console.log(`Serving static files from: ${distPath}`);
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -2572,7 +2580,7 @@ app.get('/api/getblogs', async (req, res) => {
 
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
+    res.sendFile(path.join(distPath, 'index.html'));
 });
 
 
