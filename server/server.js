@@ -8,7 +8,8 @@ import crypto from 'crypto';
 import dotenv from 'dotenv';
 import gis from 'g-i-s';
 import youtubesearchapi from 'youtube-search-api';
-import { fetchTranscript } from 'youtube-transcript';
+import pkg from 'youtube-transcript';
+const { YoutubeTranscript } = pkg;
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from '@google/generative-ai';
 import { createApi } from 'unsplash-js';
 import showdown from 'showdown';
@@ -509,7 +510,7 @@ app.post('/api/yt', async (req, res) => {
 app.post('/api/transcript', async (req, res) => {
     const receivedData = req.body;
     const promptString = receivedData.prompt;
-    fetchTranscript(promptString).then(video => {
+    YoutubeTranscript.fetchTranscript(promptString).then(video => {
         res.status(200).json({ url: video });
     }).catch(error => {
         console.log('Error', error);
