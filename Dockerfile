@@ -2,8 +2,8 @@ FROM node:20-slim AS build
 
 WORKDIR /app
 
-# Install build essentials if needed (though usually not for this project)
-# RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
+# Install curl for Coolify health checks
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
 COPY package.json package-lock.json* ./
