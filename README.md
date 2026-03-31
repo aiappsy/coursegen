@@ -1,4 +1,4 @@
-# 🎓 AI Course Generator - Text-to-Course SaaS
+# 🎓 AI Course Generator - Text-to-Course SaaS (Verified Build)
 
 ![AI Course Generator](https://firebasestorage.googleapis.com/v0/b/aicourse-81b42.appspot.com/o/aicouse.png?alt=media&token=7175cdbe-64b4-4fe4-bb6d-b519347ad8af)
 
