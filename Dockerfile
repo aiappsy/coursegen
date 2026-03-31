@@ -18,6 +18,6 @@ COPY . .
 # Build the frontend
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 5000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start:prod"]
