@@ -19,11 +19,16 @@ import bcrypt from 'bcryptjs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import connectDB from './db.js';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load environment variables
 dotenv.config();
+
+// Connect to Database
+connectDB();
 
 // Initialize services that need config
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -38,8 +43,6 @@ app.use(express.json({ limit: '50mb' }));
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../dist')));
-
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -92,7 +95,7 @@ const subscriptionSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now },
     active: { type: Boolean, default: true }
 });
-const contactShema = new mongoose.Schema({
+const contactSchema = new mongoose.Schema({
     fname: String,
     lname: String,
     email: String,
@@ -133,7 +136,7 @@ const blogSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 const Course = mongoose.model('Course', courseSchema);
 const Subscription = mongoose.model('Subscription', subscriptionSchema);
-const Contact = mongoose.model('Contact', contactShema);
+const Contact = mongoose.model('Contact', contactSchema);
 const Admin = mongoose.model('Admin', adminSchema);
 const NotesSchema = mongoose.model('Notes', notesSchema);
 const ExamSchema = mongoose.model('Exams', examSchema);
@@ -148,18 +151,29 @@ app.post('/api/signup', async (req, res) => {
 
     try {
         const estimate = await User.estimatedDocumentCount();
+<<<<<<< HEAD
         const hashedPassword = await bcrypt.hash(password, 10);
         
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
         if (estimate > 0) {
             const existingUser = await User.findOne({ email });
             if (existingUser) {
                 return res.json({ success: false, message: 'User with this email already exists' });
             }
+<<<<<<< HEAD
             const newUser = new User({ email, mName, password: hashedPassword, type });
             await newUser.save();
             res.json({ success: true, message: 'Account created successfully', userId: newUser._id });
         } else {
             const newUser = new User({ email, mName, password: hashedPassword, type: 'forever' });
+=======
+            const newUser = new User({ email, mName, password, type });
+            await newUser.save();
+            res.json({ success: true, message: 'Account created successfully', userId: newUser._id });
+        } else {
+            const newUser = new User({ email, mName, password, type: 'forever' });
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
             await newUser.save();
             const newAdmin = new Admin({ email, mName, type: 'main' });
             await newAdmin.save();
@@ -182,8 +196,12 @@ app.post('/api/signin', async (req, res) => {
             return res.json({ success: false, message: 'Invalid email or password' });
         }
 
+<<<<<<< HEAD
         const isPasswordMatch = await bcrypt.compare(password, user.password);
         if (isPasswordMatch) {
+=======
+        if (password === user.password) {
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
             return res.json({ success: true, message: 'SignIn Successful', userData: user });
         }
 
@@ -333,8 +351,12 @@ app.post('/api/reset-password', async (req, res) => {
             return res.json({ success: true, message: 'Invalid or expired token' });
         }
 
+<<<<<<< HEAD
         const hashedPassword = await bcrypt.hash(password, 10);
         user.password = hashedPassword;
+=======
+        user.password = password;
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
         user.resetPasswordToken = null;
         user.resetPasswordExpires = null;
 
@@ -373,7 +395,11 @@ app.post('/api/prompt', async (req, res) => {
         },
     ];
 
+<<<<<<< HEAD
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", safetySettings });
+=======
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash", safetySettings });
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 
     const prompt = promptString;
 
@@ -412,7 +438,11 @@ app.post('/api/generate', async (req, res) => {
         },
     ];
 
+<<<<<<< HEAD
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", safetySettings });
+=======
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash", safetySettings });
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 
     const prompt = promptString
 
@@ -626,6 +656,7 @@ app.get('/api/courses', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 const ALLOWED_LANGS = [
     "english",
     "german",
@@ -688,6 +719,8 @@ app.get('/api/coursesaudio', async (req, res) => {
 });
 
 
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 //GET SHARED COURSE
 app.get('/api/shareable', async (req, res) => {
     try {
@@ -717,10 +750,16 @@ app.post('/api/profile', async (req, res) => {
                 res.status(500).json({ success: false, message: 'Internal server error' });
             })
         } else {
+<<<<<<< HEAD
             const hashedPassword = await bcrypt.hash(password, 10);
             await User.findOneAndUpdate(
                 { _id: uid },
                 { $set: { email: email, mName: mName, password: hashedPassword } }
+=======
+            await User.findOneAndUpdate(
+                { _id: uid },
+                { $set: { email: email, mName: mName, password: password } }
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
             ).then(result => {
                 res.json({ success: true, message: 'Profile Updated' });
             }).catch(error => {
@@ -2184,7 +2223,11 @@ app.post('/api/chat', async (req, res) => {
         },
     ];
 
+<<<<<<< HEAD
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", safetySettings });
+=======
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash", safetySettings });
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 
     const prompt = promptString;
 
@@ -2347,7 +2390,11 @@ app.post('/api/aiexam', async (req, res) => {
             },
         ];
 
+<<<<<<< HEAD
         const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", safetySettings });
+=======
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash", safetySettings });
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 
         await model.generateContent(prompt).then(async result => {
             const response = result.response;
@@ -2527,10 +2574,13 @@ app.get('/api/getblogs', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 //LISTEN
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

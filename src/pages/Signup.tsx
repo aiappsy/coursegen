@@ -254,7 +254,11 @@ const Signup = () => {
             <GoogleLogin
               theme='outline'
               type='standard'
+<<<<<<< HEAD
               width={window.innerWidth < 720 ? 350 : 400}
+=======
+              width={400}
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
               onSuccess={async (credentialResponse) => {
                 const decoded = jwtDecode(credentialResponse.credential);
                 const email = decoded.email;

@@ -5,7 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check, Crown, Zap } from 'lucide-react';
 import { FreeCost, FreeType, MonthCost, MonthType, YearCost, YearType } from '@/constants';
+<<<<<<< HEAD
 import Ads from '@/components/Ads';
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 
 interface PricingPlan {
   id: string;
@@ -70,11 +73,19 @@ const plans: PricingPlan[] = [
 
 const ProfilePricing = () => {
   const navigate = useNavigate();
+<<<<<<< HEAD
 
   const handleSelectPlan = (planId: string) => {
     if (sessionStorage.getItem('type') === 'forever') {
       return;
     } else if (sessionStorage.getItem('type') === planId) {
+=======
+  
+  const handleSelectPlan = (planId: string) => {
+    if(sessionStorage.getItem('type') === 'forever'){
+      return;
+    }else if(sessionStorage.getItem('type') === planId){
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
       return;
     }
     navigate(`/dashboard/payment/${planId}`);
@@ -83,7 +94,11 @@ const ProfilePricing = () => {
   return (
     <div className="container max-w-6xl mx-auto py-8">
       <div className="text-center mb-10">
+<<<<<<< HEAD
         <h1 className="text-3xl font-bold tracking-tight text-gradient bg-gradient-to-r from-primary to-indigo-500">Choose Your Plan</h1>
+=======
+        <h1 className="text-3xl font-bold tracking-tight">Choose Your Plan</h1>
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
         <p className="mt-3 text-muted-foreground">
           Select the perfect plan to boost your course creation productivity
         </p>
@@ -135,7 +150,10 @@ const ProfilePricing = () => {
           </Card>
         ))}
       </div>
+<<<<<<< HEAD
       <Ads />
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
     </div>
   );
 };

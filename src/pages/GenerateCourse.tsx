@@ -6,7 +6,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
+<<<<<<< HEAD
 import { Sparkles, Plus, Crown } from 'lucide-react';
+=======
+import { Sparkles, Plus } from 'lucide-react';
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import CoursePreview from '@/components/CoursePreview';
@@ -14,12 +18,15 @@ import SEO from '@/components/SEO';
 import { useToast } from '@/hooks/use-toast';
 import { serverURL } from '@/constants';
 import axios from 'axios';
+<<<<<<< HEAD
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { motion } from "framer-motion";
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useNavigate } from 'react-router-dom';
 import Ads from '@/components/Ads';
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 
 const courseFormSchema = z.object({
   topic: z.string().min(3, { message: "Topic must be at least 3 characters" }),
@@ -42,10 +49,14 @@ const GenerateCourse = () => {
   const [selectedType, setSelectedType] = useState('Text & Image Course');
   const [paidMember, setPaidMember] = useState(false);
   const [lang, setLang] = useState('English');
+<<<<<<< HEAD
   const [isGoPaidDialog, setGoPaidDialog] = useState(false);
   const isMobile = useIsMobile();
   const { toast } = useToast();
   const navigate = useNavigate();
+=======
+  const { toast } = useToast();
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 
   const languages = [
     { "code": "en", "name": "English" },
@@ -109,11 +120,18 @@ const GenerateCourse = () => {
 
   const paidToad = () => {
     if (!paidMember) {
+<<<<<<< HEAD
       setGoPaidDialog(true);
       // toast({
       //   title: "Go Premium",
       //   description: "Access all features with a Premium upgrade."
       // });
+=======
+      toast({
+        title: "Go Premium",
+        description: "Access all features with a Premium upgrade."
+      });
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
     }
   };
 
@@ -312,7 +330,11 @@ const GenerateCourse = () => {
                           <div key={index} className="flex items-center gap-2 p-2 bg-muted rounded-md">
                             <span className="text-sm">{topic}</span>
                             <Button
+<<<<<<< HEAD
                               type="button"
+=======
+                            type="button"
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
                               variant="ghost"
                               size="sm"
                               className="ml-auto h-7 w-7 p-0"
@@ -434,6 +456,7 @@ const GenerateCourse = () => {
             </Card>
           </form>
         </Form>
+<<<<<<< HEAD
 
         {isMobile ? (
           <Sheet open={isGoPaidDialog} onOpenChange={setGoPaidDialog}>
@@ -523,6 +546,9 @@ const GenerateCourse = () => {
 
       </div>
       <Ads />
+=======
+      </div>
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
     </>
   );
 };

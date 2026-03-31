@@ -22,7 +22,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import Ads from '@/components/Ads';
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -264,7 +267,11 @@ const Profile = () => {
   return (
     <div className="container max-w-4xl mx-auto py-6">
       <div className="flex items-center justify-between mb-6">
+<<<<<<< HEAD
         <h1 className="text-3xl font-bold tracking-tight text-gradient bg-gradient-to-r from-primary to-indigo-500">My Profile</h1>
+=======
+        <h1 className="text-3xl font-bold">My Profile</h1>
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
         <Button
           variant={isEditing ? "default" : "outline"}
           disabled={processing}
@@ -497,7 +504,10 @@ const Profile = () => {
           </CardContent>
         </Card>
       </div>
+<<<<<<< HEAD
       <Ads />
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
     </div>
   );
 };

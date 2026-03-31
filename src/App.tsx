@@ -50,11 +50,14 @@ import BlogPost from "./pages/BlogPost";
 import AdminBlogs from "./pages/admin/AdminBlogs";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { googleClientId } from "./constants";
+<<<<<<< HEAD
 import Shareable from "./pages/Shareable";
 import SharedCoursePage from "./SharedCoursePage";
 import AudioCourses from "./pages/AudioCourses";
 import AudioPlayer from "./pages/AudioPlayer";
 import AudioContents from "./pages/AudioContents";
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 
 const queryClient = new QueryClient();
 
@@ -96,15 +99,21 @@ const App = () => (
                   <Route path="pricing" element={<ProfilePricing />} />
                   <Route path="payment/:planId" element={<PaymentDetails />} />
                   <Route path="profile" element={<Profile />} />
+<<<<<<< HEAD
                   <Route path="audio-courses" element={<AudioCourses />} />
                   <Route path="audio-courses/:courseId" element={<AudioContents />} />
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
                 </Route>
 
                 {/* Course Routes */}
                 <Route path="/course/:courseId" element={<CoursePage />} />
                 <Route path="/course/:courseId/certificate" element={<Certificate />} />
                 <Route path="/course/:courseId/quiz" element={<QuizPage />} />
+<<<<<<< HEAD
                 <Route path="/audio-player/:courseId" element={<AudioPlayer />} />
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
 
                 {/* Payment Routes */}
                 <Route path="/payment-success/:planId" element={<PaymentSuccess />} />
@@ -112,8 +121,11 @@ const App = () => (
                 <Route path="/payment-failed" element={<PaymentFailed />} />
 
                 {/* Static Pages */}
+<<<<<<< HEAD
                 <Route path='/shareable' element={<Shareable />} />
                 <Route path="/share/:courseId" element={<SharedCoursePage />} />
+=======
+>>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
                 <Route path="/about" element={<About />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<Terms />} />
