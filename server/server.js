@@ -31,8 +31,23 @@ dotenv.config();
 connectDB();
 
 // Initialize services that need config
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const flw = new Flutterwave(process.env.FLUTTERWAVE_PUBLIC_KEY, process.env.FLUTTERWAVE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'dummy_key');
+const flw = new Flutterwave(process.env.FLUTTERWAVE_PUBLIC_KEY || 'dummy_key', process.env.FLUTTERWAVE_SECRET_KEY || 'dummy_key');
+
+// Validate critical environment variables
+const requiredEnvVars = [
+    'MONGODB_URI',
+    'API_KEY',
+    'EMAIL',
+    'PASSWORD',
+    'WEBSITE_URL'
+];
+
+requiredEnvVars.forEach(varName => {
+    if (!process.env[varName]) {
+        console.warn(`WARNING: Missing environment variable: ${varName}. Application may not function correctly.`);
+    }
+});
 
 //INITIALIZE
 const app = express();
@@ -40,6 +55,11 @@ app.use(cors());
 const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
+
+// Health Check Route
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../dist')));
