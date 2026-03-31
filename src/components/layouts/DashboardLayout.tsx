@@ -17,11 +17,9 @@ import {
 } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-<<<<<<< HEAD
+
 import { Home, User, DollarSign, LogOut, Sparkles, Menu, Settings2Icon, Headphones } from 'lucide-react';
-=======
-import { Home, User, DollarSign, LogOut, Sparkles, Menu, Settings2Icon } from 'lucide-react';
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -115,7 +113,7 @@ const DashboardLayout = () => {
                   </SidebarMenuItem>
 
                   <SidebarMenuItem>
-<<<<<<< HEAD
+
                     <SidebarMenuButton asChild tooltip="Audio Courses" isActive={isActive('/dashboard/audio-courses')}>
                       <Link to="/dashboard/audio-courses" className={cn(isActive('/dashboard/audio-courses') && "text-primary")}>
                         <Headphones />
@@ -125,8 +123,7 @@ const DashboardLayout = () => {
                   </SidebarMenuItem>
 
                   <SidebarMenuItem>
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
                     <SidebarMenuButton asChild tooltip="Profile" isActive={isActive('/dashboard/profile')}>
                       <Link to="/dashboard/profile" className={cn(isActive('/dashboard/profile') && "text-primary")}>
                         <User />

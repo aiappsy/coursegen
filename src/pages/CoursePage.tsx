@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 
-=======
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
+
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -16,11 +13,9 @@ import { Content } from '@tiptap/react'
 import { MinimalTiptapEditor } from '../minimal-tiptap'
 import YouTube from 'react-youtube';
 import { Button } from '@/components/ui/button';
-<<<<<<< HEAD
+
 import { ChevronDown, Home, Share, Download, MessageCircle, ClipboardCheck, Menu, Award, PresentationIcon, FileTextIcon, Search } from 'lucide-react';
-=======
-import { ChevronDown, Home, Share, Download, MessageCircle, ClipboardCheck, Menu, Award } from 'lucide-react';
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
@@ -40,12 +35,11 @@ import axios from 'axios';
 import ShareOnSocial from 'react-share-on-social';
 import StyledText from '@/components/styledText';
 import html2pdf from 'html2pdf.js';
-<<<<<<< HEAD
+
 import pptxgen from "pptxgenjs";
 import 'react-medium-image-zoom/dist/styles.css'
 import Zoom from 'react-medium-image-zoom'
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
 
 const CoursePage = () => {
 
@@ -65,18 +59,16 @@ const CoursePage = () => {
   const [saving, setSaving] = useState(false);
   const defaultMessage = `<p>Hey there! I'm your AI teacher. If you have any questions about your ${mainTopic} course, whether it's about videos, images, or theory, just ask me. I'm here to clear your doubts.</p>`;
   const defaultPrompt = `I have a doubt about this topic :- ${mainTopic}. Please clarify my doubt in very short :- `;
-<<<<<<< HEAD
+
   const [imgError, setImgError] = useState(false);
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
 
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
-<<<<<<< HEAD
+
   const [isExportOpen, setIsExportOpen] = useState(false);
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
   const isMobile = useIsMobile();
@@ -96,10 +88,9 @@ const CoursePage = () => {
   }
 
   const handleSaveNote = async () => {
-<<<<<<< HEAD
+
     setSaving(true);
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
     const postURL = serverURL + '/api/savenotes';
     const response = await axios.post(postURL, { course: courseId, notes: value });
     if (response.data.success) {
@@ -107,19 +98,17 @@ const CoursePage = () => {
         title: "Note saved",
         description: "Your note has been saved successfully.",
       });
-<<<<<<< HEAD
+
       setSaving(false);
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
     } else {
       toast({
         title: "Error",
         description: "Internal Server Error",
       });
-<<<<<<< HEAD
+
       setSaving(false);
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
     }
   };
 
@@ -309,10 +298,9 @@ const CoursePage = () => {
   }
 
   const handleSelect = (topics, sub) => {
-<<<<<<< HEAD
+
     setImgError(false);
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
     if (!isLoading) {
       const mTopic = jsonData[mainTopic.toLowerCase()].find(topic => topic.title === topics);
       const mSubTopic = mTopic?.subtopics.find(subtopic => subtopic.title === sub);
@@ -505,29 +493,21 @@ const CoursePage = () => {
         const generatedText = res.data.url;
         const allText = generatedText.map(item => item.text);
         const concatenatedText = allText.join(' ');
-<<<<<<< HEAD
+
         const prompt = `Strictly in ${lang}, Summarize this theory in a teaching way :- ${concatenatedText}.  Do not include phrases such as "Okay", "Sure", or "I'll explain". Start directly with the explanation. Write in a professional, documentation style.`;
         sendSummery(prompt, url, mTopic, mSubTopic);
       } catch (error) {
         console.error(error)
         const prompt = `Strictly in ${lang}, Explain me about this subtopic of ${mainTopic} with examples :- ${subtop}. Please Strictly Don't Give Additional Resources And Images.  Do not include phrases such as "Okay", "Sure", or "I'll explain". Start directly with the explanation. Write in a professional, documentation style.`;
-=======
-        const prompt = `Strictly in ${lang}, Summarize this theory in a teaching way :- ${concatenatedText}.`;
-        sendSummery(prompt, url, mTopic, mSubTopic);
-      } catch (error) {
-        console.error(error)
-        const prompt = `Strictly in ${lang}, Explain me about this subtopic of ${mainTopic} with examples :- ${subtop}. Please Strictly Don't Give Additional Resources And Images.`;
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
         sendSummery(prompt, url, mTopic, mSubTopic);
       }
 
     } catch (error) {
       console.error(error)
-<<<<<<< HEAD
+
       const prompt = `Strictly in ${lang}, Explain me about this subtopic of ${mainTopic} with examples :- ${subtop}.  Please Strictly Don't Give Additional Resources And Images.  Do not include phrases such as "Okay", "Sure", or "I'll explain". Start directly with the explanation. Write in a professional, documentation style.`;
-=======
-      const prompt = `Strictly in ${lang}, Explain me about this subtopic of ${mainTopic} with examples :- ${subtop}.  Please Strictly Don't Give Additional Resources And Images.`;
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
       sendSummery(prompt, url, mTopic, mSubTopic);
     }
   }
@@ -563,7 +543,7 @@ const CoursePage = () => {
     }
   }
 
-<<<<<<< HEAD
+
 
   async function htmlDownloadPPT() {
     setExporting(true);
@@ -899,10 +879,7 @@ const CoursePage = () => {
   async function htmlDownload() {
     setExporting(true);
     setIsExportOpen(false);
-=======
-  async function htmlDownload() {
-    setExporting(true);
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
     // Generate the combined HTML content
     const combinedHtml = await getCombinedHtml(mainTopic, jsonData[mainTopic.toLowerCase()]);
 
@@ -910,11 +887,10 @@ const CoursePage = () => {
     const tempDiv = document.createElement('div');
     tempDiv.style.width = '100%';  // Ensure div is 100% width
     tempDiv.style.height = '100%';  // Ensure div is 100% height
-<<<<<<< HEAD
+
     tempDiv.style.backgroundColor = '#ffffff'; // <-- force white background
     tempDiv.style.color = '#000000';           // <-- force black text
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
     tempDiv.innerHTML = combinedHtml;
     document.body.appendChild(tempDiv);
 
@@ -939,10 +915,9 @@ const CoursePage = () => {
       // Save the PDF
       document.body.removeChild(tempDiv);
       setExporting(false);
-<<<<<<< HEAD
+
       setIsExportOpen(true);
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
     });
   }
 
@@ -1051,11 +1026,9 @@ const CoursePage = () => {
       if (response.data.success) {
         setIsLoading(false);
         const questions = JSON.parse(response.data.message);
-<<<<<<< HEAD
+
         navigate('/course/' + courseId + '/quiz', { state: { topic: mainTopic, courseId: courseId, questions: questions } });
-=======
-        navigate('/course/'+ courseId +'/quiz', { state: { topic: mainTopic, courseId: courseId, questions: questions } });
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
       } else {
         setIsLoading(false);
         toast({
@@ -1115,15 +1088,11 @@ const CoursePage = () => {
       if (!end) {
         const today = new Date();
         const formattedDate = today.toLocaleDateString('en-GB');
-<<<<<<< HEAD
+
         navigate('/course/' + courseId + '/certificate', { state: { courseTitle: mainTopic, end: formattedDate } });
       } else {
         navigate('/course/' + courseId + '/certificate', { state: { courseTitle: mainTopic, end: end } });
-=======
-        navigate('/course/'+courseId+'/certificate', { state: { courseTitle: mainTopic, end: formattedDate } });
-      } else {
-        navigate('/course/'+courseId+'/certificate', { state: { courseTitle: mainTopic, end: end } });
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
       }
 
     } else {
@@ -1188,26 +1157,19 @@ const CoursePage = () => {
     try {
       const postURL = serverURL + '/api/sendcertificate';
       await axios.post(postURL, { html, email }).then(res => {
-<<<<<<< HEAD
+
         navigate('/course/' + courseId + '/certificate', { state: { courseTitle: mainTopic, end: formattedDate } });
       }).catch(error => {
         console.error(error);
         navigate('/course/' + courseId + '/certificate', { state: { courseTitle: mainTopic, end: formattedDate } });
-=======
-        navigate('/course/'+courseId+'/certificate', { state: { courseTitle: mainTopic, end: formattedDate } });
-      }).catch(error => {
-        console.error(error);
-        navigate('/course/'+courseId+'/certificate', { state: { courseTitle: mainTopic, end: formattedDate } });
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
       });
 
     } catch (error) {
       console.error(error);
-<<<<<<< HEAD
+
       navigate('/course/' + courseId + '/certificate', { state: { courseTitle: mainTopic, end: formattedDate } });
-=======
-      navigate('/course/'+courseId+'/certificate', { state: { courseTitle: mainTopic, end: formattedDate } });
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
     }
 
   }
@@ -1246,11 +1208,9 @@ const CoursePage = () => {
   }
 
   return (
-<<<<<<< HEAD
+
     <div className="flex flex-col h-screen bg-background">
-=======
-    <div className="flex flex-col h-screen bg-background overflow-hidden">
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
       <header className="border-b border-border/40 py-2 px-4 flex justify-between items-center sticky top-0 z-10 bg-background/95 backdrop-blur-sm">
         <div className="flex items-center gap-4">
           <Drawer>
@@ -1324,11 +1284,9 @@ const CoursePage = () => {
             <Button onClick={certificateCheck} variant="ghost" size="sm" asChild>
               <span className='cursor-pointer'><Award className="h-4 w-4 mr-1" /> Certificate</span>
             </Button>
-<<<<<<< HEAD
+
             <Button onClick={() => setIsExportOpen(true)} disabled={exporting} variant="ghost" size="sm" asChild>
-=======
-            <Button onClick={htmlDownload} disabled={exporting} variant="ghost" size="sm" asChild>
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
               <span className='cursor-pointer'><Download className="h-4 w-4 mr-1" />{exporting ? 'Exporting...' : 'Export'}</span>
             </Button>
             <ShareOnSocial
@@ -1348,27 +1306,12 @@ const CoursePage = () => {
         </div>
       </header>
 
-<<<<<<< HEAD
+
 
 
       {window.innerWidth < 720 ?
         <div className="flex-1 pb-10">
-=======
-      <div className="flex flex-1 overflow-hidden">
-        <div className={cn(
-          "bg-sidebar border-r border-border/40 transition-all duration-300 overflow-hidden hidden md:block",
-          isMenuOpen ? "w-64" : "w-0"
-        )}>
-          <ScrollArea className="h-full">
-            <div className="p-4">
-              {jsonData && renderTopicsAndSubtopicsMobile(jsonData[mainTopic.toLowerCase()])}
-              <p onClick={redirectExam} className='py-2 text-left px-3 hover:bg-accent/50 rounded-md cursor-pointer'>{pass === true ? <span className="mr-2 text-primary">✓</span> : <></>}{mainTopic} Quiz</p>
-            </div>
-          </ScrollArea>
-        </div>
 
-        <div className="flex-1 overflow-hidden">
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
           <ScrollArea className="h-full" viewportRef={mainContentRef}>
             <main className="p-6 max-w-5xl mx-auto">
               {isLoading ?
@@ -1393,7 +1336,7 @@ const CoursePage = () => {
             </main>
           </ScrollArea>
         </div>
-<<<<<<< HEAD
+
         :
         <div className="flex flex-1 overflow-hidden">
           <div className={cn(
@@ -1458,9 +1401,7 @@ const CoursePage = () => {
         </div>
       }
 
-=======
-      </div>
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
 
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-background border-t border-border p-2 flex justify-around items-center">
         <Button variant="ghost" size="sm">
@@ -1473,11 +1414,9 @@ const CoursePage = () => {
             <Award className="h-5 w-5" />
           </span>
         </Button>
-<<<<<<< HEAD
+
         <Button onClick={() => setIsExportOpen(true)} disabled={exporting} variant="ghost" size="sm">
-=======
-        <Button onClick={htmlDownload} disabled={exporting} variant="ghost" size="sm">
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
           <Download className="h-5 w-5" />
         </Button>
         <ShareOnSocial
@@ -1518,22 +1457,17 @@ const CoursePage = () => {
               <div className="py-2 px-4 border-b border-border mb-2">
                 <h2 className="text-lg font-semibold">Course Assistant</h2>
               </div>
-<<<<<<< HEAD
+
               <ScrollArea className="flex-1 mb-4">
                 <div className="space-y-4 pt-2 px-2">
-=======
-              <ScrollArea className="flex-1 pr-4 mb-4">
-                <div className="space-y-4 pt-2 px-4">
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
                   {messages.map((message) => (
                     <div
                       key={message.id}
                       className={cn(
-<<<<<<< HEAD
+
                         "flex w-[80%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
-=======
-                        "flex w-max max-w-[80%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
                         message.sender === "user"
                           ? "ml-auto bg-primary text-primary-foreground"
                           : "bg-muted"
@@ -1573,11 +1507,9 @@ const CoursePage = () => {
                     <div
                       key={message.id}
                       className={cn(
-<<<<<<< HEAD
+
                         "flex w-3/4 max-w-[80%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
-=======
-                        "flex w-2/4 max-w-[80%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
                         message.sender === "user"
                           ? "ml-auto bg-primary text-primary-foreground"
                           : "bg-muted"
@@ -1615,21 +1547,14 @@ const CoursePage = () => {
               <div className="py-2 px-4 border-b border-border mb-2">
                 <h2 className="text-lg font-semibold">Course Notes</h2>
               </div>
-<<<<<<< HEAD
+
               <ScrollArea className="flex-1 mb-4">
                 <div className="space-y-4 pt-2">
                   <MinimalTiptapEditor
                     value={value}
                     onChange={setValue}
                     className="w-[100%]"
-=======
-              <ScrollArea className="flex-1 pr-4 mb-4">
-                <div className="space-y-4 pt-2 px-4">
-                  <MinimalTiptapEditor
-                    value={value}
-                    onChange={setValue}
-                    className="w-full"
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
                     editorContentClassName="p-5"
                     output="html"
                     placeholder="No notes yet. Start taking notes for this course."
@@ -1678,7 +1603,7 @@ const CoursePage = () => {
           </DialogContent>
         </Dialog>
       )}
-<<<<<<< HEAD
+
 
       <Dialog open={isExportOpen} onOpenChange={setIsExportOpen}>
         <DialogContent className="sm:max-w-lg rounded-2xl shadow-lg">
@@ -1722,8 +1647,7 @@ const CoursePage = () => {
         </DialogContent>
       </Dialog>
 
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
     </div>
   );
 };

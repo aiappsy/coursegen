@@ -29,10 +29,9 @@ import {
   Menu,
   FileEdit,
   FileSliders,
-<<<<<<< HEAD
+
   HomeIcon,
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -87,7 +86,7 @@ const AdminLayout = () => {
           <SidebarContent>
             <SidebarMenu>
               <SidebarMenuItem>
-<<<<<<< HEAD
+
                 <SidebarMenuButton asChild tooltip="Home" isActive={isActive('/dashboard')}>
                   <Link to="/dashboard" className={cn(isActive('/dashboard') && "text-primary")}>
                     <HomeIcon />
@@ -97,8 +96,7 @@ const AdminLayout = () => {
               </SidebarMenuItem>
 
               <SidebarMenuItem>
-=======
->>>>>>> 19f5d7e38fbdf491f5b3540c1f4437b149302147
+
                 <SidebarMenuButton asChild tooltip="Dashboard" isActive={isActive('/admin')}>
                   <Link to="/admin" className={cn(isActive('/admin') && "text-primary")}>
                     <LayoutDashboard />
